@@ -1,0 +1,12 @@
+{
+    "app_name":"/sensor-data",
+    "app_base":"/api",
+    "app_version":"/v1",
+    "mongodb": {
+        "db": "sensor-data",
+        "host": "127.0.0.1",
+        "port": "27017",
+        "username":""
+    },
+    "query_limit":10
+}

@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  title: ClimeCheck Data API
+  description: Collect, aggregate and analyse sensor data around the world
+  version: 1.0
+
+servers:
+  - url: http://localhost:16280/sensor-data/api/v1
+  - description: API documentation
+  
+paths:
+  /docs:
+    get:
+      tags:
+        - Doc
+      responses: 
+        '200':
+          description: success
