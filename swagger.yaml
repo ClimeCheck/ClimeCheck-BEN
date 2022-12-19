@@ -6,7 +6,7 @@ info:
 
 servers:
   - url: http://localhost:16280/sensor-data/api/v1
-  - description: API documentation
+  - description: Climecheck data API documentation
   
 paths:
   /docs:

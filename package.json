@@ -28,6 +28,7 @@
     "moment-timezone": "^0.5.39",
     "mongoose": "^6.8.0",
     "nodemon": "^2.0.20",
+    "request": "^2.88.2",
     "swagger-ui-express": "^4.6.0",
     "winston": "^3.8.2",
     "yamljs": "^0.3.0"

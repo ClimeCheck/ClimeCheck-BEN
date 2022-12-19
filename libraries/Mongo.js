@@ -1,6 +1,5 @@
 const Connector = require('./Connector')
 const _config = require('./../config/app.json')
-const { model } = require('mongoose')
 
 const Mongo = {
     _client: Connector.MongoDB(),
