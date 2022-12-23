@@ -12,7 +12,7 @@ const Connector = {
             Connector._mongo = mongoose.connection
 
             Connector._mongo.once('open', () => {console.log('Database Connection Initiated')})
-            Connector._mongo.on('error', () => {console.log('Error Connecting to Database')})
+            Connector._mongo.on('error', () => {console.log('Error Connecting to Database'); process.exit(1)})
             mongoose.Promise = global.Promise
             mongoose.set('strictQuery', false);
             mongoose.connect(url, {
