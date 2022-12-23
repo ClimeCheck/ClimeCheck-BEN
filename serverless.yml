@@ -1,0 +1,35 @@
+service: climecheck-be-api
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+
+functions:
+  app:
+    handler: api.handler
+    events:
+      - http: 
+          path: /sensor-data/api/v1
+          method: any
+      - http: 
+          path: /sensor-data/api/v1/feeds/pull
+          method: get
+      - http:
+          path: /sensor-data/api/v1/feeds/by-identity
+          method: get
+      - http: 
+          path: /sensor-data/api/v1/feeds/create
+          method: post
+      - http:
+          path: /sensor-data/api/v1/feeds/modify
+          method: post
+          
+plugins:
+  - serverless-offline
+  - serverless-dotenv
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
+    httpPort: 16280
