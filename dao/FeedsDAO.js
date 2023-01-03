@@ -76,6 +76,16 @@ const FeedsDAO = {
             else    
                 return callback(Resp.error({msg:"Error Encountered.", resp:null}))
         })
+    },
+
+    feed_data: (params, callback) => {
+        const dataModel = require('../model/DataModel')
+        dataModel.findAll(Util.query_filter(params), (state) => {
+            if (state && !state.error) {
+                return callback(Resp.success({msg:"Data found.", resp:state}))
+            } else 
+                return callback(Resp.error({msg:"Data not found", resp:null}))
+        })
     }
 }
 

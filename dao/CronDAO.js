@@ -1,5 +1,6 @@
 const _config = require('./../config/app.json')
 const feedsModel = require('./../model/FeedsModel')
+const Logger = require('./../libraries/Logger')
 
 const CronDAO = {
     pull_feed_data: (callback) => {
@@ -7,10 +8,9 @@ const CronDAO = {
             if (state && state.length > 0){
                 const parserDAO = require('./ParserDAO')
                 state.forEach((feed) => {
-                   parserDAO._feed_data(feed, (feed_data) => {
-                    if (feed_data && feed_data._id) {
-                        console.log("Success...")
-                        // return callback("Success...")
+                   parserDAO._feed_data(feed, (response) => {
+                    if (response && response.status) {
+                        callback(response)
                     } 
                    })
                 })
@@ -18,5 +18,5 @@ const CronDAO = {
         })
     }
 }
-CronDAO.pull_feed_data()
+
 module.exports = CronDAO

@@ -33,5 +33,12 @@ router.get('/delete', (req, res) => {
     })
 })
 
+//get parsed feeds
+router.get('/data', (req, res) => {
+    feedsDAO.feed_data(req.query, (state) => {
+        Util.resp(res).json(state)
+    })
+})
+
 
 module.exports = router

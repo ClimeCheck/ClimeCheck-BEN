@@ -27,7 +27,7 @@ const ParserDAO = {
                 if (jsonObj) {
                     ParserDAO.state_process(data, jsonObj,  (state) => {
                         if (state && state._id) 
-                            return callback(state)
+                            return callback({status: true, msg:"Feed successfully parsed."})
                         else 
                             return callback({status:false, msg:"Error saving data..."})
                     })
@@ -43,21 +43,21 @@ const ParserDAO = {
             raw.data.forEach((item) => {
                 const data = {
                     index: item[0],
-                    timestamp: raw.data_time_stamp,
+                    timestamp: item[1],
                     data_source: data_source,
-                    device_name: item[1],
+                    device_name: item[2],
                     device_manufacturer: data_source,
-                    device_model: item[3],
-                    coordinates: [item[5], item[4]],
-                    location_type: item[2],
-                    temperature: item[7],
-                    humidity: item[6],
-                    pressure: item[8],
+                    device_model: item[4],
+                    coordinates: [item[6], item[5]],
+                    location_type: item[3],
+                    temperature: item[8],
+                    humidity: item[7],
+                    pressure: item[9],
                     dataset: {
-                        O3:item[9],
-                        PM10:item[10],
-                        PM25: item[11],
-                        PM100: item[12]
+                        O3:item[10],
+                        PM10:item[11],
+                        PM25: item[12],
+                        PM100: item[13]
                     }
                 }
                 return callback(data)

@@ -5,31 +5,41 @@ provider:
   runtime: nodejs16.x
   region: us-east-1
 
-functions:
-  app:
-    handler: api.handler
-    events:
-      - http: 
-          path: /sensor-data/api/v1
-          method: any
-      - http: 
-          path: /sensor-data/api/v1/feeds/pull
-          method: get
-      - http:
-          path: /sensor-data/api/v1/feeds/by-identity
-          method: get
-      - http: 
-          path: /sensor-data/api/v1/feeds/create
-          method: post
-      - http:
-          path: /sensor-data/api/v1/feeds/modify
-          method: post
-          
-plugins:
-  - serverless-offline
-  - serverless-dotenv
-
 custom:
   serverless-offline:
     noPrependStageInUrl: true
     httpPort: 16280
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv
+
+functions:
+  app:
+    handler: api.handler
+    events:
+      - httpApi:
+          path: /sensor-data/api/v1/docs
+          method: get
+      - httpApi: 
+          path: /sensor-data/api/v1/feeds/pull
+          method: get
+      - httpApi:
+          path: /sensor-data/api/v1/feeds/by-identity
+          method: get
+      - httpApi: 
+          path: /sensor-data/api/v1/feeds/create
+          method: post
+      - httpApi:
+          path: /sensor-data/api/v1/feeds/modify
+          method: post
+      - httpApi:
+          path: /sensor-data/api/v1/feeds/delete
+          method: get
+      - httpApi:
+          path: /sensor-data/api/v1/feeds/data
+          method: get
+  feedParser:
+      handler: job/feed-processor.handler
+      events:
+        - schedule: cron(0 * ? * * *)

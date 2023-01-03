@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ClimeCheck Data API
-  description: Collect, aggregate and analyse sensor data around the world
+  description: Manage feeds data, data collection and analysis
   version: 1.0
 
 servers:
@@ -16,3 +16,14 @@ paths:
       responses: 
         '200':
           description: success
+  /feeds/create:
+    post:
+      tags:
+        - Add New Feed
+      paramters:
+      - in: "body"
+        schema:
+          $ref: "#/definitions/feeds"
+        responses:
+          "200":
+            description: "Success"
